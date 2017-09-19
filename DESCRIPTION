@@ -1,0 +1,11 @@
+Package: courserHomeSlides
+Type: Package
+Title: Define clicker quiz widget if students watch slides at home
+Version: 0.1.0
+Author: Sebastian Kranz
+Maintainer: Sebastian Kranz <sebastian.kranz@uni-ulm.de>
+Description: Define clicker quiz widget if students watch slides at home
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+Depends: courserClicker
