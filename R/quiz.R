@@ -52,7 +52,7 @@ home.slides.quiz.handler = function(qu=NULL,formValues, ps = get.ps(),opts=ps$op
   part=qu$parts[[length(qu$parts)]]
 
   if (lang=="de") {
-    msg = mark_utf8("Ihre Antwort wurde gespeichert. Wenn Sie nicht an der Vorlesung teilnehmen können, zählt diese Antwort. (Antworten in der Vorlesung erhalten jedoch einen 25% Punktebonus.)")
+    msg = mark_utf8("Ihre Antwort wurde gespeichert. Wenn Sie nicht an der Vorlesung teilnehmen koennen, zaehlt diese Antwort. (Antworten in der Vorlesung erhalten jedoch einen 25% Punktebonus.)")
   } else {
     msg = "Your answer has been submitted. If you cannot participate in the lecture, this submitted answer counts. (Answering in the lecture gives a 25% point bonus, however.)"
   }
