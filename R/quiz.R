@@ -8,9 +8,10 @@ rtutor.widget.quiz = function() {
   )
 }
 
-home.slides.quiz.block.parse = function(...) {
-  restore.point("rtutor.quiz.block.parse")
-  rtutor.quiz.block.parse(..., show.points=FALSE)
+home.slides.quiz.block.parse = function(id= paste0("quiz_",args$name), args=NULL, ps=get.ps(),opts = ps$opts, ...) {
+  restore.point("home.slides.quiz.block.parse")
+  task.id = paste0(ps$name,"__",if(is.null(args[["name"]])) id else paste0("quiz_",args$name))
+  rtutor.quiz.block.parse(id=task.id,args=args, ps=ps, ..., show.points=FALSE)
 }
 
 home.slides.quiz.init.handlers = function(wid,ps=get.ps(), app=getApp(),...) {
@@ -26,6 +27,8 @@ home.slides.quiz.handler = function(qu=NULL,formValues, ps = get.ps(),opts=ps$op
   task.id = qu$task.id
   userid = first.non.null(app$userid,ps$user.name,"guest")
   lang = first.non.null(ps$opts[["lang"]], "en")
+
+
 
 
   has.run = has.clicker.task.run(task.id = task.id, clicker.dir = clicker.dir)
@@ -49,15 +52,16 @@ home.slides.quiz.handler = function(qu=NULL,formValues, ps = get.ps(),opts=ps$op
   sub.file = file.path(home.sub.dir, paste0(userhash,".sub"))
   write.table(df, file=sub.file, sep=",", row.names=FALSE, col.names= FALSE)
 
+
   part=qu$parts[[length(qu$parts)]]
 
   if (lang=="de") {
-    msg = mark_utf8("Ihre Antwort wurde gespeichert. Wenn Sie nicht an der Vorlesung teilnehmen koennen, zaehlt diese Antwort. (Antworten in der Vorlesung erhalten jedoch einen 25% Punktebonus.)")
+    msg = mark_utf8("Ihre Antwort wurde gespeichert. Wenn Sie nicht an der Vorlesung teilnehmen, gilt diese Antwort. (Antworten in der Vorlesung erhalten jedoch einen 25% Punktebonus.)")
   } else {
     msg = "Your answer has been submitted. If you cannot participate in the lecture, this submitted answer counts. (Answering in the lecture gives a 25% point bonus, however.)"
   }
 
-  timedMessage(part$resultId,msg, millis=20000)
+  timedMessage(part$resultId,msg, millis=5000)
 }
 
 has.clicker.task.run = function(task.id, clicker.dir) {
